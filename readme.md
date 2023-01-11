@@ -1,4 +1,4 @@
-# Template for Vanilla JS frontend projects
+# Template for Vanilla TS frontend projects
 
 ## Setup
 1. Download [Node.js](https://nodejs.org/en/download/).

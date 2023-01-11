@@ -4,7 +4,7 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
 
 module.exports = {
-    entry: path.resolve(__dirname, '../src/index.js'),
+    entry: path.resolve(__dirname, '../src/index.ts'),
     output:
     {
         hashFunction: 'xxhash64',
@@ -20,7 +20,7 @@ module.exports = {
             ]
         }),
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src/index.html'),
+            template: path.resolve(__dirname, '../public/index.html'),
             minify: true
         }),
         new MiniCSSExtractPlugin()
@@ -45,6 +45,16 @@ module.exports = {
                 use:
                 [
                     'babel-loader'
+                ]
+            },
+
+            // TS
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                use:
+                [
+                    'ts-loader'
                 ]
             },
 
