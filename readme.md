@@ -1,7 +1,4 @@
 # Template for Vanilla JS frontend projects
-## Branches
-- ```js```
-- ```ts```
 
 ## Setup
 1. Download [Node.js](https://nodejs.org/en/download/).
