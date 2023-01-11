@@ -1,12 +1,13 @@
-# Three.js Big Bang
-https://threejs-big-bang.netlify.app/
+# Template for Vanilla JS frontend projects
+## Branches
+- ```js```
+- ```ts```
 
 ## Setup
-Download [Node.js](https://nodejs.org/en/download/).
-Run this followed commands:
+1. Download [Node.js](https://nodejs.org/en/download/).
+2. Run the following commands:
 
 ``` bash
-# Install dependencies (only the first time)
 npm install
 
 # Run the local server at localhost:8080
