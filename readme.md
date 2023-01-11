@@ -1,18 +1,13 @@
-# Template for Vanilla JS frontend projects
+# Template for Vanilla frontend projects
 ## Branches
 - ```js```
 - ```ts```
 
 ## Setup
-1. Download [Node.js](https://nodejs.org/en/download/).
-2. Run the following commands:
-
 ``` bash
-npm install
+# For vanilla JS projects
+git checkout js
 
-# Run the local server at localhost:8080
-npm run dev
-
-# Build for production in the dist/ directory
-npm run build
+# For vanilla TS projects
+git checkout ts
 ```
