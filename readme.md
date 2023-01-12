@@ -1,8 +1,6 @@
 # Template for Vanilla TS frontend projects
 
-<video width="320" height="240" controls>
-  <source src="template-frontend-webpack.mov" type="video/mp4">
-</video>
+[What do I actually get out of this template?](https://cloudinary.com/console/c-d9cca2569dec31f7fb62cdf98312e3/media_library/folders/home/asset/b4c00bf82cdb22aaca980290249417c7/manage?context=manage)
 
 ## Setup
 1. Download [Node.js](https://nodejs.org/en/download/).
