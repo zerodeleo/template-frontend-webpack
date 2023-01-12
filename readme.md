@@ -1,6 +1,7 @@
 # Template for Vanilla TS frontend projects
 
 [What do I actually get out of this template?](https://res.cloudinary.com/di6owew6n/video/upload/v1673521727/template-frontend-webpack.mov)
+*A fully working environment to get up and running quickly*
 
 ## Setup
 1. Download [Node.js](https://nodejs.org/en/download/).
