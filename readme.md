@@ -1,4 +1,4 @@
-# Template for Vanilla TS frontend projects
+# Template for Vanilla threejs + TS frontend projects
 
 [What do I actually get out of this template?](https://res.cloudinary.com/di6owew6n/video/upload/v1673521727/template-frontend-webpack.mov)
 *A fully working environment to get up and running quickly*
@@ -16,3 +16,5 @@ npm run dev
 # Build for production in the dist/ directory
 npm run build
 ```
+
+*Thanks to [Bruno Simmons](https://bruno-simon.com/) for teaching me threejs and for this boilerplate*
