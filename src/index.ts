@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 import gsap from 'gsap';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 /**
  * Canvas
@@ -38,7 +39,7 @@ const environmentMapTexture = cubeTextureLoader.load([
 const sphere = new THREE.SphereGeometry(0.8);
 const material = new THREE.MeshBasicMaterial({ map: texture });
 const sphereMesh = new THREE.Mesh(sphere, material);
-sphereMesh.position.set(0, -10, -10);
+sphereMesh.position.set(0, -4, -5);
 scene.add(sphereMesh);
 
 const cube = new THREE.BoxGeometry(3, 3, 3);
@@ -68,7 +69,7 @@ fontLoader.load('/fonts/optimer_regular.typeface.json', (font) => {
   const txtMaterial = new THREE.MeshMatcapMaterial({ matcap });
   const txtGeometry = new TextGeometry('zerodeleo', { font, ...fontStyle });
   const txt = new THREE.Mesh(txtGeometry, txtMaterial);
-  txt.position.set(0, -10, -5);
+  txt.position.set(0, 4, -5);
   txtGeometry.center();
   scene.add(txt);
 });
@@ -86,6 +87,12 @@ export const aspectRatio = windowSize.width / windowSize.height;
 export const camera = new THREE.PerspectiveCamera(90, aspectRatio);
 camera.position.set(0, 0, 10);
 scene.add(camera);
+
+/**
+ * Controls
+ */
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
 
 /**
  * Renderer
@@ -115,14 +122,19 @@ const clock = new THREE.Clock();
 
 const tick = () => {
   const elapsedTime = clock.getElapsedTime();
+  const start = DURATION + DELAY;
 
   // Update Object
-  if (elapsedTime > duration + delay) {
-    cubeMesh.rotation.x = (elapsedTime - (duration + delay)) * SPEED;
-    cubeMesh.rotation.y = (elapsedTime - (duration + delay)) * SPEED;
+  if (elapsedTime > start) {
+    cubeMesh.rotation.x = (elapsedTime - start) * SPEED;
+    cubeMesh.rotation.y = (elapsedTime - start) * SPEED;
   }
-  camera.lookAt(cubeMesh.position);
 
+  // Update controls
+  controls.target.y = 2;
+  controls.update();
+
+  camera.lookAt(cubeMesh.position);
   renderer.render(scene, camera);
   window.requestAnimationFrame(tick);
 };
