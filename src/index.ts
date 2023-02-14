@@ -100,13 +100,13 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 /**
  * Animation
  */
-const duration = 1;
-const delay = 0;
-const SPEED = 0.3;
+export const DURATION = 1;
+export const DELAY = 0;
+export const SPEED = 0.3;
 
 gsap.to(sphereMesh.rotation, {
-  duration,
-  delay,
+  duration: DURATION,
+  delay: DELAY,
   x: 1.9 * Math.PI,
   y: 1.5 * Math.PI
 });
