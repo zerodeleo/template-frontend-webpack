@@ -2,8 +2,10 @@ import './styles/style.css';
 import * as THREE from 'three';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
-import gsap from 'gsap';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import gsap from 'gsap';
+import * as dat from 'lil-gui';
+import * as animations from './animations';
 
 /**
  * Canvas
@@ -95,6 +97,15 @@ const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 
 /**
+ * Debug
+ */
+const gui = new dat.GUI();
+gui.add(cubeMesh.position, 'y', -10, 10, 0.1);
+gui.add(cubeMesh.position, 'x', -10, 10, 0.1);
+gui.add(cubeMesh.position, 'z', -10, 10, 0.1);
+gui.add({ spin: animations.spin }, 'spin');
+
+/**
  * Renderer
  */
 export const renderer = new THREE.WebGLRenderer({
@@ -134,7 +145,7 @@ const tick = () => {
   controls.target.y = 2;
   controls.update();
 
-  camera.lookAt(cubeMesh.position);
+  // camera.lookAt(cubeMesh.position);
   renderer.render(scene, camera);
   window.requestAnimationFrame(tick);
 };
