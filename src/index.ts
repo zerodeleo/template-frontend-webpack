@@ -146,16 +146,28 @@ tick();
  */
 export const fullscreen = () => {
   canvas.requestFullscreen && canvas.requestFullscreen();
-  // TODO: canvas.webkitRequestFullscreen && canvas.webkitRequestFullscreen();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const can = canvas as any;
+  can.webkitRequestFullscreen && can.webkitRequestFullscreen();
+  can.mozRequestFullscreen && can.mozRequestFullscreen();
+  can.msRequestFullscreen && can.msRequestFullscreen();
 };
 
 export const exitFullscreen = () => {
   document.exitFullscreen && document.exitFullscreen();
-  // TODO: document.webkitExitFullscreen && document.webkitExitFullscreen();
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const doc = document as any;
+  doc.webkitExitFullscreen && doc.webkitExitFullscreen();
+  doc.mozExitFullscreen && doc.mozExitFullscreen();
+  doc.msExitFullscreen && doc.msExitFullscreen();
 };
 
 window.addEventListener('dblclick', () => {
-  const fullscreenElement = document.fullscreenElement; // TODO: || document.webkitFullscreenElement;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const doc = document as any;
+  const fullscreenElement =
+    document.fullscreenElement || doc.webkitFullscreenElement;
 
   fullscreenElement ? exitFullscreen() : fullscreen();
 });
