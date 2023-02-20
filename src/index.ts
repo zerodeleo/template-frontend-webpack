@@ -5,7 +5,6 @@ import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import gsap from 'gsap';
 import * as dat from 'lil-gui';
-import * as animations from './animations';
 
 /**
  * Canvas
@@ -97,15 +96,6 @@ const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 
 /**
- * Debug
- */
-const gui = new dat.GUI();
-gui.add(cubeMesh.position, 'y', -10, 10, 0.1);
-gui.add(cubeMesh.position, 'x', -10, 10, 0.1);
-gui.add(cubeMesh.position, 'z', -10, 10, 0.1);
-gui.add({ spin: animations.spin }, 'spin');
-
-/**
  * Renderer
  */
 export const renderer = new THREE.WebGLRenderer({
@@ -122,12 +112,13 @@ export const DURATION = 1;
 export const DELAY = 0;
 export const SPEED = 0.3;
 
-gsap.to(sphereMesh.rotation, {
+const spinParams = {
   duration: DURATION,
   delay: DELAY,
   x: 1.9 * Math.PI,
   y: 1.5 * Math.PI
-});
+};
+gsap.to(sphereMesh.rotation, spinParams);
 
 const clock = new THREE.Clock();
 
@@ -151,6 +142,28 @@ const tick = () => {
 };
 
 tick();
+
+/**
+ * Debug
+ */
+const gui = new dat.GUI();
+gui.add(cubeMesh.position, 'y', -10, 10, 0.1);
+gui.add(cubeMesh.position, 'x', -10, 10, 0.1);
+gui.add(cubeMesh.position, 'z', -10, 10, 0.1);
+gui.add(
+  {
+    spin: () => {
+      gsap.to(sphereMesh.rotation, spinParams);
+    }
+  },
+  'spin'
+);
+
+// Animations
+
+/**
+ * LISTENERS
+ */
 
 /**
  * Handle Fullscreen & Resize
