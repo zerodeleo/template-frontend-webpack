@@ -7,6 +7,7 @@
 ## Branches
 - ```js```
 - ```ts```
+- ```threejs```
 
 ## Setup
 ``` bash
@@ -15,4 +16,10 @@ git checkout js
 
 # For vanilla TS projects
 git checkout ts
+
+
+# For vanilla threejs projects (TS)
+git checkout threejs
 ```
+
+
