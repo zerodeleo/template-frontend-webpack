@@ -13,6 +13,7 @@ import {
   WIREFRAME_MATERIAL,
 } from "../materials";
 import { COLOR_PINK } from "../colors";
+import { ExtendedBufferAttributeInterface } from "../interface";
 
 const SPHERE = new THREE.SphereGeometry(0.8);
 export const SPHERE_MESH = new THREE.Mesh(SPHERE, FACE_MATERIAL);
@@ -50,3 +51,36 @@ const SPHERE_2 = new THREE.SphereGeometry(2);
 export const SPHERE_MESH_2 = new THREE.Mesh(SPHERE_2, PINK_MATERIAL);
 SPHERE_MESH_2.position.y = -10;
 SPHERE_MESH_2.position.z = -10;
+
+export const PARTICLES_GEOMETRY = new THREE.SphereGeometry(1, 64, 64);
+
+/**
+ * VM
+ */
+export const VM_GEOMETRY = new THREE.BufferGeometry();
+
+export const WAVE_GEOMETRY = new THREE.BufferGeometry();
+
+const createParticleCube = (geometry: THREE.BufferGeometry, count = 10) => {
+  const positions = new Float32Array(count + 3);
+  const colors = new Float32Array(count + 3);
+
+  for (let i = 0; i < count * 3; i++) {
+    positions[i] = (Math.random() - 0.5) * 10;
+    colors[i] = Math.random();
+  }
+
+  geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
+};
+
+export const VM_PARTICLES_COUNT = 5000;
+createParticleCube(VM_GEOMETRY, VM_PARTICLES_COUNT);
+
+export const WAVE_PARTICLES_COUNT = 50000;
+createParticleCube(WAVE_GEOMETRY, WAVE_PARTICLES_COUNT);
+
+const colors = (
+  PARTICLES_GEOMETRY.attributes.position as ExtendedBufferAttributeInterface
+).array;
+PARTICLES_GEOMETRY.setAttribute("color", new THREE.BufferAttribute(colors, 3));

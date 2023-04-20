@@ -1,7 +1,7 @@
 import "./styles/style.css";
-import { RENDERER } from "./renderer";
-import { SCENE } from "./scene";
-import { CAMERA } from "./camera";
+import { RENDERER, RENDERER_LOGO } from "./renderer";
+import { SCENE, SCENE_LOGO } from "./scene";
+import { CAMERA, CAMERA_LOGO } from "./camera";
 import { listen } from "./listeners";
 import { tick } from "./animations";
 import { debug } from "./debug/gui";
@@ -12,6 +12,7 @@ shadow({ softShadowMap: true });
 listen();
 tick();
 debug();
-showHelpers({ directionalLight: false, spotlight: true });
+showHelpers({ directionalLight: false, spotlight: false });
 
+RENDERER_LOGO.render(SCENE_LOGO, CAMERA_LOGO);
 RENDERER.render(SCENE, CAMERA);

@@ -1,6 +1,6 @@
 @import "reset.css";
 @import "layout.css";
 
-canvas {
+#canvas {
     background-color: #1e1022;
 }

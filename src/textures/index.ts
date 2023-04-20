@@ -13,3 +13,5 @@ export const ENV_TEXTURE = ENV_TEXTURE_LOADER.load([
   "/textures/environmentMaps/0/pz.png",
   "/textures/environmentMaps/0/nz.png",
 ]);
+
+export const VM_PARTICLES_TEXTURE = TEXTURE_LOADER.load("/img/vmradio.png");

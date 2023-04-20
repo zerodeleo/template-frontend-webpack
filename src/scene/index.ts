@@ -22,6 +22,7 @@ import {
   DIRECTIONAL_LIGHT_CAMERA_HELPER,
   SPOTLIGHT_CAMERA_HELPER,
 } from "../debug/helpers";
+import { PARTICLES, VM_PARTICLES, WAVE_PARTICLES } from "../points";
 
 export const SCENE = new THREE.Scene();
 
@@ -29,9 +30,9 @@ SCENE
   // Lights
   .add(AMBIENT_LIGHT)
   .add(DIRECTIONAL_LIGHT)
-  // .add(POINT_LIGHT)
-  // .add(HEMISPHERE_LIGHT)
-  // .add(RECT_AREA_LIGHT)
+  .add(POINT_LIGHT)
+  .add(HEMISPHERE_LIGHT)
+  .add(RECT_AREA_LIGHT)
   .add(SPOTLIGHT)
   .add(SPOTLIGHT.target)
   // Geometries
@@ -44,6 +45,12 @@ SCENE
   .add(TORUS_MESH)
   .add(CUBE_MESH)
   .add(SPHERE_MESH)
+  // Particles
+  .add(VM_PARTICLES)
+  .add(WAVE_PARTICLES)
   // Helpers
   .add(DIRECTIONAL_LIGHT_CAMERA_HELPER)
   .add(SPOTLIGHT_CAMERA_HELPER);
+
+export const SCENE_LOGO = new THREE.Scene();
+SCENE_LOGO.add(PARTICLES);

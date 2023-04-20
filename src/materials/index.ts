@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { ENV_TEXTURE } from "../textures";
+import { ENV_TEXTURE, VM_PARTICLES_TEXTURE } from "../textures";
 import { FACE_TEXTURE } from "../textures";
 import { COLOR_DARK_PURPLE, COLOR_PINK, COLOR_WHITE } from "../colors";
 
@@ -40,3 +40,26 @@ export const WHITE_MATERIAL = new THREE.MeshStandardMaterial({
   color: COLOR_WHITE,
 });
 WHITE_MATERIAL.roughness = 0.4;
+
+/**
+ * PARTICLES
+ */
+
+export const PARTICLES_MATERIAL = new THREE.PointsMaterial();
+PARTICLES_MATERIAL.size = 0.01;
+PARTICLES_MATERIAL.sizeAttenuation = true;
+PARTICLES_MATERIAL.vertexColors = true;
+
+export const VM_PARTICLES_MATERIAL = new THREE.PointsMaterial();
+VM_PARTICLES_MATERIAL.size = 0.2;
+VM_PARTICLES_MATERIAL.sizeAttenuation = true;
+VM_PARTICLES_MATERIAL.transparent = true;
+VM_PARTICLES_MATERIAL.alphaMap = VM_PARTICLES_TEXTURE;
+VM_PARTICLES_MATERIAL.depthWrite = false;
+VM_PARTICLES_MATERIAL.vertexColors = true;
+// VM_PARTICLES_MATERIAL.blending = THREE.AdditiveBlending;
+
+export const WAVE_PARTICLES_MATERIAL = new THREE.PointsMaterial();
+WAVE_PARTICLES_MATERIAL.size = 0.1;
+WAVE_PARTICLES_MATERIAL.sizeAttenuation = true;
+WAVE_PARTICLES_MATERIAL.map = FACE_TEXTURE;
