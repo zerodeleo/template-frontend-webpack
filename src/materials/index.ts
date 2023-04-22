@@ -63,3 +63,10 @@ export const WAVE_PARTICLES_MATERIAL = new THREE.PointsMaterial();
 WAVE_PARTICLES_MATERIAL.size = 0.1;
 WAVE_PARTICLES_MATERIAL.sizeAttenuation = true;
 WAVE_PARTICLES_MATERIAL.map = FACE_TEXTURE;
+
+export const GALAXY_MATERIAL = new THREE.PointsMaterial({
+  sizeAttenuation: true,
+  depthWrite: false,
+  blending: THREE.AdditiveBlending,
+  vertexColors: true,
+});

@@ -1,10 +1,16 @@
-import * as THREE from "three";
+import * as THREE from 'three';
 import {
+  GALAXY_MATERIAL,
   PARTICLES_MATERIAL,
   VM_PARTICLES_MATERIAL,
   WAVE_PARTICLES_MATERIAL,
-} from "../materials";
-import { PARTICLES_GEOMETRY, VM_GEOMETRY, WAVE_GEOMETRY } from "../geometries";
+} from '../materials';
+import {
+  GALAXY_GEOMETRY,
+  PARTICLES_GEOMETRY,
+  VM_GEOMETRY,
+  WAVE_GEOMETRY,
+} from '../geometries';
 
 export const PARTICLES = new THREE.Points(
   PARTICLES_GEOMETRY,
@@ -23,3 +29,8 @@ export const WAVE_PARTICLES = new THREE.Points(
   WAVE_PARTICLES_MATERIAL
 );
 WAVE_PARTICLES.position.y = -10;
+
+export const GALAXY_PARTICLES = new THREE.Points(
+  GALAXY_GEOMETRY,
+  GALAXY_MATERIAL
+);
