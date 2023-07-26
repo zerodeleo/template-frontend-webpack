@@ -1,6 +1,6 @@
-import { WINDOW_SIZE } from "../util";
-import { CAMERA } from "../camera";
-import { RENDERER } from "../renderer";
+import { WINDOW_SIZE } from "../utils";
+import { CAMERA } from "../cameras";
+import { RENDERER } from "../renderers";
 
 export const resize = () => {
   // Update size

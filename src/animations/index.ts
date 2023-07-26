@@ -1,63 +1,31 @@
 import * as THREE from "three";
-import { SCENE, SCENE_LOGO } from "../scene";
-import { CAMERA, CAMERA_LOGO } from "../camera";
-import { RENDERER, RENDERER_LOGO } from "../renderer";
-import {
-  SPHERE_MESH,
-  CUBE_MESH,
-  WAVE_GEOMETRY,
-  WAVE_PARTICLES_COUNT,
-} from "../geometries";
-import gsap from "gsap";
+import CANNON from "cannon";
+import { SCENE } from "../scenes";
+import { CAMERA } from "../cameras";
+import { RENDERER } from "../renderers";
 import { CONTROLS } from "../controls";
-import { PARTICLES } from "../points";
-import { ExtendedBufferAttributeInterface } from "../interface";
-
-const DURATION = 1;
-const DELAY = 0;
-const SPEED = 0.3;
-
-const SPIN_PARAMS = {
-  duration: DURATION,
-  delay: DELAY,
-  x: 1.9 * Math.PI,
-  y: 1.5 * Math.PI,
-};
-gsap.to(SPHERE_MESH.rotation, SPIN_PARAMS);
+import { WORLD } from "../physics/worlds";
+import { GEOMETRIES_UPDATE, createSphere } from "../geometries";
 
 const clock = new THREE.Clock();
+let oldElapsedTime = 0;
 
 export const tick = () => {
   const elapsedTime = clock.getElapsedTime();
-  const start = DURATION + DELAY;
+  const deltaTime = elapsedTime - oldElapsedTime;
+  oldElapsedTime = elapsedTime;
 
-  // Update Object
-  if (elapsedTime > start) {
-    CUBE_MESH.rotation.x = (elapsedTime - start) * SPEED;
-    CUBE_MESH.rotation.y = (elapsedTime - start) * SPEED;
+  // Update Objects
+  const position = new THREE.Vector3(0, 10, 0);
+  createSphere({ radius: 5, position });
 
-    PARTICLES.rotation.x = (elapsedTime - start) * 0.2;
-    PARTICLES.rotation.y = (elapsedTime - start) * 0.2;
-    PARTICLES.rotation.z = (elapsedTime - start) * 0.2;
-  }
-
-  for (let i = 0; i < WAVE_PARTICLES_COUNT; i++) {
-    const i3 = i * 3;
-
-    const x = (
-      WAVE_GEOMETRY.attributes.position as ExtendedBufferAttributeInterface
-    ).array[i3];
-    (
-      WAVE_GEOMETRY.attributes.position as ExtendedBufferAttributeInterface
-    ).array[i3 + 1] = Math.sin(elapsedTime + x);
-  }
-  WAVE_GEOMETRY.attributes.position.needsUpdate = true;
+  // Update physics
+  WORLD.step(1 / 60, deltaTime, 3);
 
   // Update controls
   CONTROLS.update();
 
   // CAMERA.lookAt(CUBE_MESH.position);
   RENDERER.render(SCENE, CAMERA);
-  RENDERER_LOGO.render(SCENE_LOGO, CAMERA_LOGO);
   window.requestAnimationFrame(tick);
 };

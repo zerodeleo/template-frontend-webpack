@@ -1,7 +1,7 @@
 import * as THREE from "three";
-import { PLANE_MESH, SPHERE_MESH_2 } from "../geometries";
-import { DIRECTIONAL_LIGHT, POINT_LIGHT, SPOTLIGHT } from "../lights";
-import { RENDERER } from "../renderer";
+import { PLANE_MESH } from "../geometries";
+import { DIRECTIONAL_LIGHT } from "../lights";
+import { RENDERER } from "../renderers";
 
 type Shadow = { softShadowMap: boolean };
 
@@ -9,7 +9,6 @@ export const shadow = ({ softShadowMap }: Shadow) => {
   RENDERER.shadowMap.enabled = true;
 
   // MESHES
-  SPHERE_MESH_2.castShadow = true;
   PLANE_MESH.receiveShadow = true;
 
   /** LIGHTS
@@ -18,10 +17,6 @@ export const shadow = ({ softShadowMap }: Shadow) => {
   DIRECTIONAL_LIGHT.castShadow = true;
   DIRECTIONAL_LIGHT.shadow.mapSize.width = 1024;
   DIRECTIONAL_LIGHT.shadow.mapSize.height = 1024;
-
-  SPOTLIGHT.castShadow = true;
-  SPOTLIGHT.shadow.mapSize.width = 1024;
-  SPOTLIGHT.shadow.mapSize.height = 1024;
 
   if (softShadowMap) {
     RENDERER.shadowMap.type = THREE.PCFSoftShadowMap;
