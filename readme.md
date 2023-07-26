@@ -17,4 +17,4 @@ npm run dev
 npm run build
 ```
 
-*Thanks to [Bruno Simmons](https://bruno-simon.com/) for teaching me threejs and for this boilerplate*
+*Thanks to [Bruno Simmons](https://bruno-simon.com/) for teaching me threejs
